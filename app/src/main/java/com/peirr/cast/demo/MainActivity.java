@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
-import com.peirra.cast.CastContract;
-import com.peirra.cast.CastPresenter;
+import com.peirr.cast.CastContract;
+import com.peirr.cast.CastPresenter;
 
 public class MainActivity extends AppCompatActivity implements CastContract.View {
 
