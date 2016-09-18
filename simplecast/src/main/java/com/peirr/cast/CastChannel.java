@@ -1,4 +1,4 @@
-package com.peirra.cast;
+package com.peirr.cast;
 
 import com.google.android.gms.cast.Cast;
 import com.google.android.gms.cast.CastDevice;

@@ -1,4 +1,4 @@
-package com.peirra.cast;
+package com.peirr.cast;
 
 import android.view.Menu;
 

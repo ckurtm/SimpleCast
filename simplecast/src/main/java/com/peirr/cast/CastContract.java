@@ -1,9 +1,9 @@
-package com.peirra.cast;
+package com.peirr.cast;
 
 import android.view.Menu;
 
-import com.peirra.presentation.MvpPresenter;
-import com.peirra.presentation.MvpView;
+import com.peirr.presentation.MvpPresenter;
+import com.peirr.presentation.MvpView;
 
 public interface CastContract {
 

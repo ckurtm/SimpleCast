@@ -1,7 +1,6 @@
-package com.peirra.cast;
+package com.peirr.cast;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.Menu;
 
 import com.google.android.gms.cast.framework.CastButtonFactory;

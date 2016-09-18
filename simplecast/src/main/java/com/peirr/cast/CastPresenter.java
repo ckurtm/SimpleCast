@@ -1,11 +1,11 @@
-package com.peirra.cast;
+package com.peirr.cast;
 
 import android.util.Log;
 import android.view.Menu;
 
 import com.google.android.gms.cast.framework.CastState;
 import com.google.android.gms.cast.framework.Session;
-import com.peirra.presentation.BasePresenter;
+import com.peirr.presentation.BasePresenter;
 
 /**
  * Created by kurt on 2016/09/14.
