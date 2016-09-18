@@ -25,4 +25,5 @@ public interface CastDevice {
     void attachMenu(Menu menu,int menuItemId);
     void detach();
     void setupChannel(Session session);
+    void setHost(String host);
 }

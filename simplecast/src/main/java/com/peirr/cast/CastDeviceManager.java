@@ -30,6 +30,7 @@ public class CastDeviceManager implements CastDevice {
     private DeviceCallback deviceCallback;
     private final String nameSpace;
     private CastChannel channel;
+    private String host;
 
     private CastStateListener stateCallback = new CastStateListener() {
         @Override
@@ -120,5 +121,10 @@ public class CastDeviceManager implements CastDevice {
                 deviceCallback.onChannelAttachementFailed(e);
             }
         }
+    }
+
+    @Override
+    public void setHost(final String host) {
+        this.host = host;
     }
 }

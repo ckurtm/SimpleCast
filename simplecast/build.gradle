@@ -2,16 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.3"
+version = "1.0.4"
 group = "com.peirr"
-repositories {
-    maven {
-        url  "http://dl.bintray.com/ckurtm/maven"
-    }
-}
 
 ext {
-    versionName = '1.0.3'
+    versionName = '1.0.4'
     groupId = "com.peirr"
     appId = "cast"
 }
