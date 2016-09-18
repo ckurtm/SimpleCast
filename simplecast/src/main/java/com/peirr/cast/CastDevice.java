@@ -20,7 +20,7 @@ public interface CastDevice {
         void onChannelAttachementFailed(Exception e);
     }
 
-    void post(String json,DeviceCallback callback);
+    void post(String json);
     void attach(DeviceCallback callback);
     void attachMenu(Menu menu,int menuItemId);
     void detach();

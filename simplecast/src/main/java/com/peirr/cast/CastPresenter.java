@@ -101,7 +101,7 @@ public class CastPresenter extends BasePresenter<CastContract.View> implements C
     @Override
     public void post(final String json) {
         if (isViewAttached()) {
-            device.post(json,deviceCallback);
+            device.post(json);
         }
     }
 

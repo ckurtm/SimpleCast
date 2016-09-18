@@ -64,7 +64,7 @@ public class CastDeviceManager implements CastDevice {
 
 
     @Override
-    public void post(final String json, final DeviceCallback callback) {
+    public void post(final String json) {
         if (channel != null) {
             try {
                 session.sendMessage(nameSpace, json).setResultCallback(new ResultCallback<Status>() {
@@ -72,20 +72,20 @@ public class CastDeviceManager implements CastDevice {
                     public void onResult(Status result) {
                         if (result != null) {
                             if (result.isSuccess()) {
-                                callback.onMessagePosted(nameSpace, json);
+                                deviceCallback.onMessagePosted(nameSpace, json);
                             } else {
-                                callback.onMessageFailed(nameSpace, json);
+                                deviceCallback.onMessageFailed(nameSpace, json);
                             }
                         } else {
-                            callback.onMessageFailed(nameSpace, json);
+                            deviceCallback.onMessageFailed(nameSpace, json);
                         }
                     }
                 });
             } catch (Exception e) {
-                callback.onMessageFailed(nameSpace, json);
+                deviceCallback.onMessageFailed(nameSpace, json);
             }
         } else {
-            callback.onMessageFailed(nameSpace, json);
+            deviceCallback.onMessageFailed(nameSpace, json);
         }
     }
 
