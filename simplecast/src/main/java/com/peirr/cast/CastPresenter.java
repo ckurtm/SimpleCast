@@ -93,9 +93,7 @@ public class CastPresenter extends BasePresenter<CastContract.View> implements C
 
     @Override
     public void detach() {
-//        if (isViewAttached()) {
-            device.detach();
-//        }
+        device.detach();
     }
 
     @Override

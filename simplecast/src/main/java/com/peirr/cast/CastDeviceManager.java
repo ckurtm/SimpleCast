@@ -28,9 +28,10 @@ public class CastDeviceManager implements CastDevice {
     private final Context context;
     private CastSessionCallback sessionCallback;
     private DeviceCallback deviceCallback;
-    private final String nameSpace;
+    private String nameSpace;
     private CastChannel channel;
     private String host;
+private final boolean available;
 
     private CastStateListener stateCallback = new CastStateListener() {
         @Override
@@ -57,16 +58,19 @@ public class CastDeviceManager implements CastDevice {
 
     public CastDeviceManager(final Context context, final String nameSpace) {
         this.context = context;
-        this.castContext = CastContext.getSharedInstance(context);
-        this.nameSpace = nameSpace;
-        sessionManager = this.castContext.getSessionManager();
-        channel = new CastChannel(nameSpace, channelCallback);
+        available = CastUtils.isGooglePlayServicesAvailable(context);
+        if(available) {
+            this.castContext = CastContext.getSharedInstance(context);
+            this.nameSpace = nameSpace;
+            sessionManager = this.castContext.getSessionManager();
+            channel = new CastChannel(nameSpace, channelCallback);
+        }
     }
 
 
     @Override
     public void post(final String json) {
-        if (channel != null) {
+        if (channel != null && available) {
             try {
                 session.sendMessage(nameSpace, json).setResultCallback(new ResultCallback<Status>() {
                     @Override
@@ -93,6 +97,9 @@ public class CastDeviceManager implements CastDevice {
     @Override
     public void attach(final DeviceCallback callback) {
         deviceCallback = callback;
+        if(!available){
+            return;
+        }
         session = sessionManager.getCurrentCastSession();
         castContext.addCastStateListener(stateCallback);
         sessionCallback = new CastSessionCallback(deviceCallback);
@@ -101,11 +108,17 @@ public class CastDeviceManager implements CastDevice {
 
     @Override
     public void attachMenu(final Menu menu, final int menuItemId) {
+        if(!available){
+            return;
+        }
         CastButtonFactory.setUpMediaRouteButton(context.getApplicationContext(), menu, menuItemId);
     }
 
     @Override
     public void detach() {
+        if(!available){
+            return;
+        }
         castContext.removeCastStateListener(stateCallback);
         sessionManager.removeSessionManagerListener(sessionCallback);
         session = null;
@@ -113,6 +126,9 @@ public class CastDeviceManager implements CastDevice {
 
     @Override
     public void setupChannel(Session session) {
+        if(!available){
+            return;
+        }
         this.session = (CastSession) session;
         try {
             this.session.setMessageReceivedCallbacks(nameSpace, channel);

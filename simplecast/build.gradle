@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.5"
+version = "1.0.6"
 group = "com.peirr"
 
 ext {
-    versionName = '1.0.5'
+    versionName = '1.0.6'
     groupId = "com.peirr"
     appId = "cast"
 }
