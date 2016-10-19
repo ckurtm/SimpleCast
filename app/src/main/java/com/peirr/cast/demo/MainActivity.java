@@ -16,26 +16,19 @@ public class MainActivity extends AppCompatActivity implements CastContract.View
     private static final String TAG = "MainActivity";
     private Button button;
     private CastPresenter presenter;
-    private String MESSAGE = "{  \n" +
-            "   \"typ\":\"VIDEO\",\n" +
-            "   \"state\":\"PLAY\",\n" +
-            "   \"version\":1,\n" +
-            "   \"data\":{  \n" +
-            "      \"url\":\"http://www.peirr.com/black.mp4\"\n" +
-            "   }\n" +
-            "}";
+    String url = "https://ia800201.us.archive.org/12/items/BigBuckBunny_328/BigBuckBunny_512kb.mp4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupActionBar();
-        presenter = new CastPresenter(Injection.provideCastDevice(this,CastOptionsProvider.CUSTOM_NAMESPACE));
+        presenter = new CastPresenter(Injection.provideCastDevice(this,"urn:x-cast:com.simplecast"));
         button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                presenter.post(MESSAGE);
+                presenter.load(MediaUtils.getDummyVideo(url,23),true,0,null);
             }
         });
     }

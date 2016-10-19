@@ -2,4 +2,7 @@
     <string name="app_name">SimpleCast</string>
     <string name="media_route_menu_title">Play on&#8230;</string>
     <string name="cast_app_id">3A182410</string>
+
+    <string name="default_app_id">4F8B3483</string>
+
 </resources>
