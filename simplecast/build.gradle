@@ -2,14 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.0.6"
+version = "1.0.7"
 group = "com.peirr"
-
-ext {
-    versionName = '1.0.6'
-    groupId = "com.peirr"
-    appId = "cast"
-}
 
 def siteUrl = 'https://github.com/ckurtm/SimpleCast'
 def gitUrl = 'https://github.com/ckurtm/SimpleCast.git'
@@ -17,7 +11,7 @@ def gitUrl = 'https://github.com/ckurtm/SimpleCast.git'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         minSdkVersion 16
@@ -112,8 +106,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.google.android.gms:play-services-cast-framework:9.4.0'
+    compile 'com.google.android.gms:play-services-cast-framework:9.6.1'
     compile 'com.android.support:mediarouter-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.peirr:presentation:1.0.0'
+    compile 'com.peirr:presentation:1.1.1'
 }

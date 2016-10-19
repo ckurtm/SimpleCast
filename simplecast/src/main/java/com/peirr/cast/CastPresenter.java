@@ -3,9 +3,13 @@ package com.peirr.cast;
 import android.util.Log;
 import android.view.Menu;
 
+import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.framework.CastState;
 import com.google.android.gms.cast.framework.Session;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.peirr.presentation.BasePresenter;
+
+import org.json.JSONObject;
 
 /**
  * Created by kurt on 2016/09/14.
@@ -100,6 +104,16 @@ public class CastPresenter extends BasePresenter<CastContract.View> implements C
     public void post(final String json) {
         if (isViewAttached()) {
             device.post(json);
+        }
+    }
+
+    @Override
+    public void load(MediaInfo mediaInfo, boolean autoplay, long playPosition, JSONObject customData) {
+        if(isViewAttached()){
+            RemoteMediaClient client = device.getRemoteClient();
+            if (client != null) {
+                client.load(mediaInfo,autoplay,playPosition,customData);
+            }
         }
     }
 

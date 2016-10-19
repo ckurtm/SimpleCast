@@ -2,7 +2,9 @@ package com.peirr.cast;
 
 import android.view.Menu;
 
+import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.framework.Session;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 
 /**
  * Created by kurt on 2016/09/14.
@@ -26,4 +28,5 @@ public interface CastDevice {
     void detach();
     void setupChannel(Session session);
     void setHost(String host);
+    RemoteMediaClient getRemoteClient();
 }

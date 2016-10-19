@@ -3,12 +3,14 @@ package com.peirr.cast;
 import android.content.Context;
 import android.view.Menu;
 
+import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.Session;
 import com.google.android.gms.cast.framework.SessionManager;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
@@ -31,7 +33,7 @@ public class CastDeviceManager implements CastDevice {
     private String nameSpace;
     private CastChannel channel;
     private String host;
-private final boolean available;
+    private final boolean available;
 
     private CastStateListener stateCallback = new CastStateListener() {
         @Override
@@ -59,7 +61,7 @@ private final boolean available;
     public CastDeviceManager(final Context context, final String nameSpace) {
         this.context = context;
         available = CastUtils.isGooglePlayServicesAvailable(context);
-        if(available) {
+        if (available) {
             this.castContext = CastContext.getSharedInstance(context);
             this.nameSpace = nameSpace;
             sessionManager = this.castContext.getSessionManager();
@@ -97,7 +99,7 @@ private final boolean available;
     @Override
     public void attach(final DeviceCallback callback) {
         deviceCallback = callback;
-        if(!available){
+        if (!available) {
             return;
         }
         session = sessionManager.getCurrentCastSession();
@@ -108,7 +110,7 @@ private final boolean available;
 
     @Override
     public void attachMenu(final Menu menu, final int menuItemId) {
-        if(!available){
+        if (!available) {
             return;
         }
         CastButtonFactory.setUpMediaRouteButton(context.getApplicationContext(), menu, menuItemId);
@@ -116,7 +118,7 @@ private final boolean available;
 
     @Override
     public void detach() {
-        if(!available){
+        if (!available) {
             return;
         }
         castContext.removeCastStateListener(stateCallback);
@@ -126,7 +128,7 @@ private final boolean available;
 
     @Override
     public void setupChannel(Session session) {
-        if(!available){
+        if (!available) {
             return;
         }
         this.session = (CastSession) session;
@@ -142,5 +144,14 @@ private final boolean available;
     @Override
     public void setHost(final String host) {
         this.host = host;
+    }
+
+    @Override
+    public RemoteMediaClient getRemoteClient() {
+        if (channel != null && available) {
+                return session.getRemoteMediaClient();
+        } else {
+           return null;
+        }
     }
 }
